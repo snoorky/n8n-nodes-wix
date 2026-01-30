@@ -110,7 +110,6 @@ export class WixSites implements INodeType {
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		try {
 			const credentials = await this.getCredentials('wixApi')
-			const apiKey = credentials.apiKey as string
 
 			const filter = this.getNodeParameter('filter', 0) as Record<string, unknown>
 			const sortInput = this.getNodeParameter('sort', 0, {}) as { fieldName?: string; order?: WixSortOrder }
@@ -130,7 +129,8 @@ export class WixSites implements INodeType {
 				method: 'POST',
 				url: 'https://www.wixapis.com/site-list/v2/sites/query',
 				headers: {
-					Authorization: apiKey,
+					Authorization: credentials.apiKey as string,
+					'wix-account-id': credentials.accountId as string,
 					'Content-Type': 'application/json',
 				},
 				body,
