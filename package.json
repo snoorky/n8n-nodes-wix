@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-wix",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Wix sites node for n8n",
     "license": "MIT",
     "homepage": "",
